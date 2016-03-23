@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SPBusService.Models.routeStop>
+
+@{
+    ViewBag.Title = "Stops for " + @ViewBag.busRouteCode + "-" + @ViewBag.busRouteName;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.busStop.busStopNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.offsetMinutes)
+        </th>
+        @*Commented to hide routeName*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.busRoute.routeName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.busStop.location)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.busStop.busStopNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.offsetMinutes)
+        </td>
+        @*Commented to hide routeName*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.busRoute.routeName)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.busStop.location)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.routeStopId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.routeStopId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.routeStopId })
+        </td>
+    </tr>
+}
+
+</table>

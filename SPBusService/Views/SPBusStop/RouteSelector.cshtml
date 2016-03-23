@@ -1,0 +1,29 @@
+﻿@*
+    File Name : RouteSelector.cshtml
+    RouteSelector ActionResult View for SPBusStopController
+    Comes up when there are more than 1 routeCodes of selected BusStop
+
+    Author : Sam Sangkyun Park
+    Date Created : Oct. 04, 2015
+    Revision History : Version 1 created : Oct. 04, 2015
+*@
+
+@model SPBusService.Models.routeStop
+
+@{
+    ViewBag.Title = "RouteSelector";
+}
+
+<h2>RouteSelector</h2>
+
+<form action="/SPRouteSchedule/RouteStopSchedule" method="post">
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownList("routeNames", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.busRouteCode, "", new { @class = "text-danger" })
+        </div>
+        <input type="submit" name="getSchedule" value="Get Schedule" />
+    </div>
+</form>

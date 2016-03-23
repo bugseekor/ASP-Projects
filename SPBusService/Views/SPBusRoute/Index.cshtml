@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SPBusService.Models.busRoute>
+
+@{
+    ViewBag.Title = "Bus Route Listing";
+}
+<p>
+    @TempData["message"]
+</p>
+<h2>Bus Route Listing</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.routeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.routeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.busRouteCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.busRouteCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.busRouteCode }) |
+            @Html.ActionLink("Go to Route Stops", "Index", "SPRouteStop", new { busRouteCode = item.busRouteCode }, null) |
+
+            @*Adding a hyperlink passing busRouteCode and routeName to SPTrip controller's Index action*@
+            @Html.ActionLink("Monitored Trips", "Index", "SPTrip", new { busRouteCode = item.busRouteCode, routeName = item.routeName }, null)
+        </td>
+    </tr>
+}
+
+</table>

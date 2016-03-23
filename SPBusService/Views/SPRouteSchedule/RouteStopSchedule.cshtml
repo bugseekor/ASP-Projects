@@ -1,0 +1,52 @@
+﻿@*
+    File Name : RouteStopSchedule.cshtml
+    Displays all arrival times of selected busStop for selected busRoute
+
+    Author : Sam Sangkyun Park
+    Date Created : Oct. 04, 2015
+    Revision History : Version 1 created : Oct. 04, 2015
+*@
+
+@{
+    ViewBag.Title = "Stop: " + ViewBag.selectedLocation;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ValidationSummary()
+</p>
+
+<h3>
+    Route: @ViewBag.selectedRouteName
+</h3>
+
+<h3>Mon-Fri</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        if (item.isWeekDay)
+        {
+            <li>@item.startTime</li>
+        }
+        else
+        {
+            continue;
+        }
+    }
+</ul>
+
+<h3>Sat-Sun & Holidays</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        if (item.isWeekDay)
+        {
+            continue;
+        }
+        else
+        {
+            <li>@item.startTime</li>
+        }
+    }
+</ul>

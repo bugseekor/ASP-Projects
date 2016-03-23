@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPBusService", "SPBusService\SPBusService.csproj", "{4AD57E8A-7388-4B2B-945D-3D20154EC38F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPBusService.Tests", "SPBusService.Tests\SPBusService.Tests.csproj", "{4C192333-4568-4144-8C1C-836B93EE4377}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AD57E8A-7388-4B2B-945D-3D20154EC38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD57E8A-7388-4B2B-945D-3D20154EC38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD57E8A-7388-4B2B-945D-3D20154EC38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD57E8A-7388-4B2B-945D-3D20154EC38F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C192333-4568-4144-8C1C-836B93EE4377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C192333-4568-4144-8C1C-836B93EE4377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C192333-4568-4144-8C1C-836B93EE4377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C192333-4568-4144-8C1C-836B93EE4377}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

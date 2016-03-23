@@ -1,0 +1,73 @@
+﻿@*
+    File Name : Create.cshtml
+    An Empty scaffold view for adding a new trip records of selected busRoute
+
+    Author : Sam Sangkyun Park
+    Date Created : Oct. 11, 2015
+    Revision History : Version 1 created : Oct. 11, 2015
+*@
+
+@*Declaration of the model of which type is trip*@
+@model SPBusService.Models.trip
+
+@{
+    //title string composed with two Session variables
+    ViewBag.Title = "New Trip for " + Session["busRouteCode"] + " - " + Session["routeName"];
+}
+
+<h2>@ViewBag.Title</h2>
+
+@* <form> begins with Htlm.BeginForm of which default link is back to Create action *@
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+    
+    @Html.ValidationSummary();
+
+    //Geneates tripDate textbox and comment multi-line textbox automatically by model
+    @Html.EditorForModel()
+
+    //Dropdown list for routeScheduleId 
+    //Shows start Time & weekday/end and returns routeScheduleId
+    @Html.LabelFor(model => model.routeScheduleId)
+    @:&nbsp;
+    @Html.DropDownListFor(model => model.routeScheduleId, (SelectList)Model.timeList, "--Select Start Time--")
+    @Html.ValidationMessageFor(model => model.routeScheduleId)
+    <br />
+    
+    //Dropdown list for driverId
+    //Shows fullName and returns driverId
+    @Html.LabelFor(model => model.driverId)
+    @:&nbsp;
+    @Html.DropDownListFor(model => model.driverId, new SelectList(ViewBag.drivers, "Value", "Text"), "--Select Bus Driver--")
+    @Html.ValidationMessageFor(model => model.driverId)
+    <br />
+    
+    //Radio buttons for busId
+    //Individual buttons have same name but different Ids and lables
+    //New lines for every 5 buttons and lables that selelcts its button when clicked
+    @Html.LabelFor(model => model.busId) <br />
+    float numberOfBuses = 0;
+    foreach (var item in ViewBag.buses)
+    {
+        if(numberOfBuses != 0 && numberOfBuses % 5 == 0)
+        {
+            <br />
+        }
+        string busId = item.busId.ToString();
+        string busNumber = item.busNumber.ToString();
+        @Html.RadioButtonFor(model => model.busId, busId, new { id = "bus" + busNumber })
+        @Html.LabelFor(model => model.busId, busNumber, new {@for="bus" + busNumber})
+        numberOfBuses++;
+    }
+    //Html.HiddenFor simulates that unchecked radio buttons pass to the controller
+    //so that the controller can notice the busId was not checked.
+    @Html.HiddenFor(model => model.busId, new { Value = "" })
+    @Html.ValidationMessageFor(model => model.busId)
+    <br />
+
+    <input type="submit" value="Create Trip" />
+    @Html.ActionLink("Back to Listing", "Index")
+}
+

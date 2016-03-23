@@ -1,0 +1,59 @@
+﻿ @*
+    File Name : _Layout.cshtml
+    Master view design for Bus Service
+
+    Author : Sam Sangkyun Park
+    Date Created : Sep. 17, 2015
+    Revision History : Version 1 created : Sep. 17, 2015
+                       Updated for TempData : Sep. 25, 2015
+*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*Bus image favicon adding*@
+    <link rel="shortcut icon icon" type="image/x-icon" href="~/busImg.png" />
+    <title>@ViewBag.Title - Sangkyun's Assignment 1</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Bus Routes", "Index", "SPBusRoute")</li>
+                    <li>@Html.ActionLink("Bus Stops", "Index", "SPBusStop")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <p style="font-weight:bold; color:red"> @TempData["message"]</p>
+        
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; <a href="mailto:spark1435@conestogac.on.ca">Sam Sangkyun Park</a>, Section 2</p>
+            <p align="right">@Html.ActionLink("About", "About", "Home") &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Contact", "Contact", "Home")</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

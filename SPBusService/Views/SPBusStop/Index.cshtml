@@ -1,0 +1,70 @@
+﻿@*
+    File Name : Index.cshtml
+    Index ActionResult View for SPBusStopController
+
+    Author : Sam Sangkyun Park
+    Date Created : Oct. 04, 2015
+    Revision History : Version 1 created : Oct. 04, 2015
+*@
+
+
+@model IEnumerable<SPBusService.Models.busStop>
+
+@{
+    ViewBag.Title = "Bus Stop Listing";
+}
+
+<p style="font-weight:bold; color:red">@TempData["message"]</p>
+<h2>Bus Stop Listing</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*Adding busStopNumber on the view*@
+        <th>
+            @Html.ActionLink("busStopNumber", "Index", "SPBusStop", new { sortColumn = "busStopNumber" }, null)
+        </th>
+        <th>
+            @Html.ActionLink("location", "Index", "SPBusStop", new { sortColumn = "location" }, null)
+        </th>
+        <th>
+            Route Selector
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.locationHash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.goingDowntown)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*Adding busStopNumber on the view*@
+        <td>
+            @Html.DisplayFor(modelItem => item.busStopNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.ActionLink("bus schedule", "RouteSelector", new { id = item.busStopNumber })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.locationHash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.goingDowntown)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.busStopNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.busStopNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.busStopNumber })
+        </td>
+    </tr>
+}
+
+</table>

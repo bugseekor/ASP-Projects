@@ -1,0 +1,48 @@
+﻿@*
+    File Name : Index.cshtml
+    An Empty scaffold view that displays all trip records of selected busRoute
+
+    Author : Sam Sangkyun Park
+    Date Created : Oct. 11, 2015
+    Revision History : Version 1 created : Oct. 11, 2015
+*@
+
+@model IQueryable<SPBusService.SearchedTrip>
+
+
+@{
+    @*Shows a title that has busRouteCode and routeName values from session variables*@
+    ViewBag.Title = "Bus Trips for " + Session["busRouteCode"] + " - " + Session["routeName"];
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*<p style="font-weight:bold; color:red"> @TempData["message"]</p>*@
+
+<p>
+    @*A hyperlink for the Create action*@
+    @Html.ActionLink("Create New Trip", "Create")
+</p>
+
+@*table for showing record which has class="table" style*@
+<table class="table">
+    <tr>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>Driver</th>
+        <th>Bus #</th>
+        <th>Comments</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(a => item.tripDate)</td>
+            <td>@item.startTime</td>
+            @*a full name of the driver*@
+            <td>@item.fullName</td>
+            @*busNumber instead of busId*@
+            <td>@item.busNumber</td>
+            <td>@item.comments</td>
+        </tr>
+    }
+</table>
